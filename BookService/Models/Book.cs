@@ -10,9 +10,12 @@
 
         // Database metadata.
         public DateTime BookCreatedStamp { get; set; } = DateTime.Now;
-        
+
         // Database metadata.
         public DateTime? BookUpdatedStamp { get; set; }
+
+        // Navigation property
+        public ICollection<BookAuthor> BookAuthors { get; set; }
         public Book()
         {
 

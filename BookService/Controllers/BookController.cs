@@ -49,15 +49,25 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
-            IEnumerable<AuthorSimple> dbAuthors = _dataContext.Authors
-                .Where(x => )
-                .Select(x => new AuthorSimple
-                 {
-                     AuthorId = x.AuthorId,
-                     AuthorFirstName = x.AuthorFirstName,
-                     AuthorLastName = x.AuthorLastName,
-                 });
+            //IEnumerable<AuthorSimple> dbAuthors = _dataContext.Authors
+            //    //.Where(x => )
+            //    .Select(x => new AuthorSimple
+            //    {
+            //        AuthorId = x.AuthorId,
+            //        AuthorFirstName = x.AuthorFirstName,
+            //        AuthorLastName = x.AuthorLastName,
+            //    });
 
+            IEnumerable<AuthorSimple> dbAuthors = _dataContext.BookAuthors
+                .Where(x => x.BookAuthorBookId == bookId)
+                .Select(x => x.Author)
+                .Select(x => new AuthorSimple
+                {
+                    AuthorId = x.AuthorId,
+                    AuthorFirstName = x.AuthorFirstName,
+                    AuthorLastName = x.AuthorLastName,
+                })
+                .ToList();
 
             BookFull book = new BookFull
             {
