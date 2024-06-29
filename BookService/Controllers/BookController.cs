@@ -76,10 +76,41 @@ namespace BookService.Controllers
 
             if (saveChanges <= 0)
             {
-                return NoContent();
+                return BadRequest("Failed to add the book.");
             }
 
             return CreatedAtAction(nameof(GetBookById), new Book { }, newBook);
+        }
+
+        [HttpPut("{bookId}")]
+        public ActionResult EditBookById(int bookId, BookUpdateRequest book)
+        {
+            // Get the book to edit from the database.
+            Book? dbBook = _dataContext.Books
+               .Where(book => book.BookId == bookId)
+               .FirstOrDefault();
+
+            if (dbBook == null)
+            {
+                return NotFound();
+            }
+
+            // Only edit values that has been changed.
+            if (book.BookTitle != null) dbBook.BookTitle = book.BookTitle;
+            if (book.BookIsbn != null) dbBook.BookIsbn = book.BookIsbn;
+            if (book.BookPublishedDate != null) dbBook.BookPublishedDate = (DateOnly)book.BookPublishedDate;
+            if (book.BookCopiesAvailable != null) dbBook.BookCopiesAvailable = (byte)book.BookCopiesAvailable;
+            dbBook.BookUpdatedStamp = DateTime.Now;
+
+            // Save the changes on dbBook to the database 
+            int saveChanges = _dataContext.SaveChanges();
+
+            if (saveChanges <= 0)
+            {
+                return BadRequest("Failed to update the book.");
+            }
+
+            return Ok();
         }
     }
 }
