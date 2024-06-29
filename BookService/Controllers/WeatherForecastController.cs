@@ -1,3 +1,4 @@
+using BookService.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookService.Controllers

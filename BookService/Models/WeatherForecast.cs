@@ -1,4 +1,4 @@
-namespace BookService
+namespace BookService.Models
 {
     public class WeatherForecast
     {
