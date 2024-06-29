@@ -9,7 +9,7 @@ namespace BookService.DTOs.Book
         public string BookIsbn { get; set; } = string.Empty;
         public DateOnly BookPublishedDate { get; set; } = DateOnly.MaxValue;
         public byte BookCopiesAvailable { get; set; } = 0;
-        public AuthorSimple[] Authors { get; set; } = [];
+        public IEnumerable<AuthorSimple> Authors { get; set; } = [];
         public BookFull()
         {
 

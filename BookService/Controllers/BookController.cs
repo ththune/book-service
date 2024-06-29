@@ -2,6 +2,9 @@ using BookService.Data;
 using BookService.DTOs.Book;
 using BookService.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Reflection.Metadata.BlobBuilder;
+using System.Linq;
+using BookService.DTOs.Author;
 
 namespace BookService.Controllers
 {
@@ -21,7 +24,7 @@ namespace BookService.Controllers
         [HttpGet(Name = "GetBooks")]
         public ActionResult<IEnumerable<BookSimple>> GetBooks()
         {
-            IEnumerable<BookSimple> books = _dataContext.Books.
+            IEnumerable<BookSimple> dbBooks = _dataContext.Books.
                  Select(x => new BookSimple
                  {
                      BookId = x.BookId,
@@ -31,11 +34,11 @@ namespace BookService.Controllers
                      BookCopiesAvailable = x.BookCopiesAvailable,
                  });
 
-            return Ok(books);
+            return Ok(dbBooks);
         }
 
         [HttpGet("{bookId}")]
-        public ActionResult<BookSimple> GetBookById(int bookId)
+        public ActionResult<BookFull> GetBookById(int bookId)
         {
             Book? dbBook = _dataContext.Books
                .Where(book => book.BookId == bookId)
@@ -46,13 +49,23 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
-            BookSimple book = new BookSimple
+            IEnumerable<AuthorSimple> dbAuthors = _dataContext.Authors.
+                 Select(x => new AuthorSimple
+                 {
+                     AuthorId = x.AuthorId,
+                     AuthorFirstName = x.AuthorFirstName,
+                     AuthorLastName = x.AuthorLastName,
+                 });
+
+
+            BookFull book = new BookFull
             {
                 BookId = dbBook.BookId,
                 BookTitle = dbBook.BookTitle,
                 BookIsbn = dbBook.BookIsbn,
                 BookPublishedDate = dbBook.BookPublishedDate,
-                BookCopiesAvailable = dbBook.BookCopiesAvailable
+                BookCopiesAvailable = dbBook.BookCopiesAvailable,
+                Authors = dbAuthors,
             };
 
             return Ok(book);
