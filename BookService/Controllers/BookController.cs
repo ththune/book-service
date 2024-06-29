@@ -18,7 +18,7 @@ namespace BookService.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "Book")]
+        [HttpGet(Name = "GetBooks")]
         public ActionResult<IEnumerable<BookSimple>> GetBooks()
         {
             IEnumerable<BookSimple> books = _dataContext.Books.
@@ -57,6 +57,12 @@ namespace BookService.Controllers
 
             return Ok(book);
 
+        }
+
+        [HttpPost(Name = "AddBook")]
+        public ActionResult AddBook()
+        {
+            return BadRequest("Not yet implemented");
         }
     }
 }
