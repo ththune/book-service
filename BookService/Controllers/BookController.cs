@@ -19,7 +19,7 @@ namespace BookService.Controllers
         }
 
         [HttpGet(Name = "GetBooks")]
-        public IEnumerable<BookSimple> Get()
+        public IEnumerable<BookSimple> GetBooks()
         {
             IEnumerable<BookSimple> bookSimples = _dataContext.Books.
                  Select(x => new BookSimple
