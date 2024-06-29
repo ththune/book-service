@@ -49,8 +49,9 @@ namespace BookService.Controllers
                 return NotFound();
             }
 
-            IEnumerable<AuthorSimple> dbAuthors = _dataContext.Authors.
-                 Select(x => new AuthorSimple
+            IEnumerable<AuthorSimple> dbAuthors = _dataContext.Authors
+                .Where(x => )
+                .Select(x => new AuthorSimple
                  {
                      AuthorId = x.AuthorId,
                      AuthorFirstName = x.AuthorFirstName,

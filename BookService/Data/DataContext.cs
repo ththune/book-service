@@ -26,9 +26,14 @@ namespace BookService.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("dbo");
+
             modelBuilder.Entity<Book>()
                 .ToTable("Book", "dbo")
                 .HasKey(book => book.BookId);
+
+            modelBuilder.Entity<Author>()
+                .ToTable("Author", "dbo")
+                .HasKey(author => author.AuthorId);
             //base.OnModelCreating(modelBuilder);
         }
     }
