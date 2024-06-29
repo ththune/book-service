@@ -1,5 +1,5 @@
 using BookService.Data;
-using BookService.DTOs;
+using BookService.DTOs.Book;
 using BookService.Models;
 using Microsoft.AspNetCore.Mvc;
 
