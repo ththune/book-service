@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\github\\book-service\\BookService\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2469379C-87AC-43CD-9D8D-8B137FB7941B}|BookService.csproj|d:\\github\\book-service\\bookservice\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2469379C-87AC-43CD-9D8D-8B137FB7941B}|BookService.csproj|solutionrelative:controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2469379C-87AC-43CD-9D8D-8B137FB7941B}|BookService.csproj|d:\\github\\book-service\\bookservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2469379C-87AC-43CD-9D8D-8B137FB7941B}|BookService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 266,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +34,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "D:\\github\\book-service\\BookService\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookController.cs",
+              "ToolTip": "D:\\github\\book-service\\BookService\\Controllers\\BookController.cs",
+              "RelativeToolTip": "Controllers\\BookController.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABIAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T14:39:23.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BookService",
               "DocumentMoniker": "D:\\github\\book-service\\BookService\\BookService.csproj",
               "RelativeDocumentMoniker": "BookService.csproj",
@@ -43,7 +60,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\github\\book-service\\BookService\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
