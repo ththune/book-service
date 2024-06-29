@@ -19,14 +19,12 @@ namespace BookService
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                //app.UseCors("DevCors");
                 app.UseSwagger();
                 app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                //app.UseCors("ProdCors");
                 app.UseHttpsRedirection();
             }
 
