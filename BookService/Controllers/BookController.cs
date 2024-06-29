@@ -112,5 +112,28 @@ namespace BookService.Controllers
 
             return Ok();
         }
+
+        [HttpDelete("{bookId}")]
+        public ActionResult DeleteBook(int bookId)
+        {
+            // Get the book to delete from the database, if it exist.
+            Book? dbBook = _dataContext.Books
+               .Where(book => book.BookId == bookId)
+               .FirstOrDefault();
+
+            if (dbBook == null)
+            {
+                return NotFound();
+            }
+
+            _dataContext.Books.Remove(dbBook);
+            int saveChanges = _dataContext.SaveChanges();
+            if (saveChanges <= 0)
+            {
+                return BadRequest("Failed to delete the book.");
+            }
+
+            return Ok();
+        }
     }
 }
