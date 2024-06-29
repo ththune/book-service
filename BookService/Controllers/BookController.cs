@@ -70,9 +70,9 @@ namespace BookService.Controllers
                 BookCopiesAvailable = book.BookCopiesAvailable,
             };
 
+            // Forward the new book to the database and save it.
             _dataContext.Books.Add(newBook);
             int saveChanges = _dataContext.SaveChanges();
-            Console.WriteLine($"saveChanges = {saveChanges}");
 
             if (saveChanges <= 0)
             {
