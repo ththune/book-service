@@ -60,9 +60,26 @@ namespace BookService.Controllers
         }
 
         [HttpPost(Name = "AddBook")]
-        public ActionResult AddBook()
+        public ActionResult AddBook(BookCreateRequest book)
         {
-            return BadRequest("Not yet implemented");
+            Book newBook = new Book
+            {
+                BookTitle = book.BookTitle,
+                BookIsbn = book.BookIsbn,
+                BookPublishedDate = book.BookPublishedDate,
+                BookCopiesAvailable = book.BookCopiesAvailable,
+            };
+
+            _dataContext.Books.Add(newBook);
+            int saveChanges = _dataContext.SaveChanges();
+            Console.WriteLine($"saveChanges = {saveChanges}");
+
+            if (saveChanges <= 0)
+            {
+                return NoContent();
+            }
+
+            return CreatedAtAction(nameof(GetBookById), new Book { }, newBook);
         }
     }
 }
