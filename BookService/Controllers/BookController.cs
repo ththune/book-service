@@ -18,10 +18,10 @@ namespace BookService.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetBooks")]
-        public IEnumerable<BookSimple> GetBooks()
+        [HttpGet(Name = "Book")]
+        public ActionResult<IEnumerable<BookSimple>> GetBooks()
         {
-            IEnumerable<BookSimple> bookSimples = _dataContext.Books.
+            IEnumerable<BookSimple> books = _dataContext.Books.
                  Select(x => new BookSimple
                  {
                      BookId = x.BookId,
@@ -31,7 +31,32 @@ namespace BookService.Controllers
                      BookCopiesAvailable = x.BookCopiesAvailable,
                  });
 
-            return bookSimples;
+            return Ok(books);
+        }
+
+        [HttpGet("{bookId}")]
+        public ActionResult<BookSimple> GetBookById(int bookId)
+        {
+            Book? dbBook = _dataContext.Books
+               .Where(book => book.BookId == bookId)
+               .FirstOrDefault();
+
+            if (dbBook == null)
+            {
+                return NotFound();
+            }
+
+            BookSimple book = new BookSimple
+            {
+                BookId = dbBook.BookId,
+                BookTitle = dbBook.BookTitle,
+                BookIsbn = dbBook.BookIsbn,
+                BookPublishedDate = dbBook.BookPublishedDate,
+                BookCopiesAvailable = dbBook.BookCopiesAvailable
+            };
+
+            return Ok(book);
+
         }
     }
 }
