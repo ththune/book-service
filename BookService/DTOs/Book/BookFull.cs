@@ -8,7 +8,6 @@ namespace BookService.DTOs.Book
         public string BookTitle { get; set; } = string.Empty;
         public string BookIsbn { get; set; } = string.Empty;
         public DateOnly BookPublishedDate { get; set; } = DateOnly.MaxValue;
-        public byte BookCopiesAvailable { get; set; } = 0;
         public IEnumerable<AuthorSimple> Authors { get; set; } = [];
         public BookFull()
         {

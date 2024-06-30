@@ -31,7 +31,6 @@ namespace BookService.Controllers
                      BookTitle = x.BookTitle,
                      BookIsbn = x.BookIsbn,
                      BookPublishedDate = x.BookPublishedDate,
-                     BookCopiesAvailable = x.BookCopiesAvailable,
                  });
 
             return Ok(dbBooks);
@@ -66,7 +65,6 @@ namespace BookService.Controllers
                 BookTitle = dbBook.BookTitle,
                 BookIsbn = dbBook.BookIsbn,
                 BookPublishedDate = dbBook.BookPublishedDate,
-                BookCopiesAvailable = dbBook.BookCopiesAvailable,
                 Authors = dbAuthors,
             };
 
@@ -82,7 +80,6 @@ namespace BookService.Controllers
                 BookTitle = book.BookTitle,
                 BookIsbn = book.BookIsbn,
                 BookPublishedDate = book.BookPublishedDate,
-                BookCopiesAvailable = book.BookCopiesAvailable,
             };
 
             // Forward the new book to the database and save it.
@@ -114,7 +111,6 @@ namespace BookService.Controllers
             if (book.BookTitle != null) dbBook.BookTitle = book.BookTitle;
             if (book.BookIsbn != null) dbBook.BookIsbn = book.BookIsbn;
             if (book.BookPublishedDate != null) dbBook.BookPublishedDate = (DateOnly)book.BookPublishedDate;
-            if (book.BookCopiesAvailable != null) dbBook.BookCopiesAvailable = (byte)book.BookCopiesAvailable;
             dbBook.BookUpdatedStamp = DateTime.Now;
 
             // Save the changes on dbBook to the database 
