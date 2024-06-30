@@ -14,6 +14,7 @@ namespace BookService.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,6 +50,10 @@ namespace BookService.Data
                 .HasOne(bookAuthor => bookAuthor.Author)
                 .WithMany(author => author.BookAuthors)
                 .HasForeignKey(bookAuthor => bookAuthor.BookAuthorAuthorId);
+
+            modelBuilder.Entity<User>()
+                .ToTable("User", "dbo")
+                .HasKey(user => user.UserId);
         }
     }
 }
