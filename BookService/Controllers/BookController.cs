@@ -73,7 +73,7 @@ namespace BookService.Controllers
         }
 
         [HttpPost(Name = "AddBook")]
-        public ActionResult AddBook(BookCreateRequest book)
+        public ActionResult<BookCreateResponse> AddBook(BookCreateRequest book)
         {
             Book newBook = new Book
             {
@@ -91,7 +91,13 @@ namespace BookService.Controllers
                 return BadRequest("Failed to add the book.");
             }
 
-            return CreatedAtAction(nameof(GetBookById), new Book { }, newBook);
+            return Ok(new BookCreateResponse
+            {
+                BookId = newBook.BookId,
+                BookTitle = newBook.BookTitle,
+                BookIsbn = newBook.BookIsbn,
+                BookPublishedDate = newBook.BookPublishedDate
+            });
         }
 
         [HttpPut("{bookId}")]
