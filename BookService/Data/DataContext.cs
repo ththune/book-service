@@ -20,8 +20,11 @@ namespace BookService.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+                optionsBuilder.LogTo(Console.WriteLine);
+
                 optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"),
                     optionsBuilder => optionsBuilder.EnableRetryOnFailure());
+
             }
         }
 
@@ -38,8 +41,13 @@ namespace BookService.Data
                 .HasKey(author => author.AuthorId);
 
             modelBuilder.Entity<BookAuthor>()
-                .ToTable("BookAuthor", "dbo")
-                .HasKey(bookAuthor => new { bookAuthor.BookAuthorBookId, bookAuthor.BookAuthorAuthorId });
+          .ToTable("BookAuthor", "dbo")
+          .HasKey(bookAuthor => bookAuthor.BookAuthorId);
+
+          // Bugged code, causes 500 exception when adding values to the BookAuthor table
+            // modelBuilder.Entity<BookAuthor>()
+            //     .ToTable("BookAuthor", "dbo")
+            //     .HasKey(bookAuthor => new { bookAuthor.BookAuthorBookId, bookAuthor.BookAuthorAuthorId });
 
             modelBuilder.Entity<BookAuthor>()
                 .HasOne(bookAuthor => bookAuthor.Book)
