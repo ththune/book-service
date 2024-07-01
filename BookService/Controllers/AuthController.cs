@@ -25,8 +25,8 @@ namespace BookService.Controllers
             _logger = logger;
         }
 
-        [HttpPost("Login")]
-        public ActionResult<String> SignIn(SignInRequest signInRequest)
+        [HttpPost("SignIn")]
+        public ActionResult<SignInResponse> SignIn(SignInRequest signInRequest)
         {
 
             BookService.Models.User? dbUser = _dataContext.Users
@@ -47,7 +47,7 @@ namespace BookService.Controllers
                 return Unauthorized("Invalid user credentials");
             }
 
-            return Ok("Sign in successful");
+            return Ok(new SignInResponse { SignedIn = true });
         }
     }
 }
