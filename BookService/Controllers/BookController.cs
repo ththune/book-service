@@ -101,7 +101,7 @@ namespace BookService.Controllers
         }
 
         [HttpPut("{bookId}")]
-        public ActionResult EditBookById(int bookId, BookUpdateRequest book)
+        public ActionResult<BookUpdateResponse> EditBookById(int bookId, BookUpdateRequest book)
         {
             // Get the book to edit from the database.
             Book? dbBook = _dataContext.Books
@@ -127,7 +127,13 @@ namespace BookService.Controllers
                 return BadRequest("Failed to update the book.");
             }
 
-            return Ok();
+            return Ok(new BookUpdateResponse
+            {
+                BookId = dbBook.BookId,
+                BookTitle = dbBook.BookTitle,
+                BookIsbn = dbBook.BookIsbn,
+                BookPublishedDate = dbBook.BookPublishedDate
+            });
         }
 
         [HttpDelete("{bookId}")]
