@@ -26,7 +26,7 @@ namespace BookService.Controllers
         }
 
         [HttpPost("Book/{bookId}")]
-        public ActionResult<String> AddAuthorsToBook(AuthorCreateRequest[] authors, int bookId)
+        public ActionResult<AuthorCreateResponse[]> AddAuthorsToBook(AuthorCreateRequest[] authors, int bookId)
         {
 
             Book? dbBook = _dataContext.Books
@@ -75,9 +75,20 @@ namespace BookService.Controllers
                 return BadRequest($"Failed to link the authors with book id {bookId}");
             }
 
+            List<AuthorCreateResponse> newAuthorsCreateResponse = new List<AuthorCreateResponse>();
+            foreach (Author newAuthor in newAuthors)
+            {
+                AuthorCreateResponse newAuthorCreateResponse = new AuthorCreateResponse
+                {
+                    AuthorId = newAuthor.AuthorId,
+                    AuthorFirstName = newAuthor.AuthorFirstName,
+                    AuthorLastName = newAuthor.AuthorLastName,
+                };
 
+                newAuthorsCreateResponse.Add(newAuthorCreateResponse);
+            }
 
-            return Created();
+            return Ok(newAuthorsCreateResponse);
         }
     }
 }
